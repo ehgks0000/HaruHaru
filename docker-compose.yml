@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  server_h:
+    build: .
+    container_name: server_h
+    # restart: unless-stopped
+    # command: npm run test
+    ports:
+      - '3001:3001'
+    environment:
+      - PORT=3001
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=haruharu
+      - MYSQL_DATABASE=HaRu_HaRu
+      - MYSQL_PASSWORD=haruharu
+      - DB_HOSTNAME=mysql
+    volumes:
+      - ./:/usr/src/app:delegated
+      - /usr/src/app/node_modules
+      - ./seeders:/usr/src/app/seeders
+    links:
+      - mysql
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    command: --lower_case_table_names=1
+    restart: always
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=haruharu
+      - MYSQL_DATABASE=HaRu_HaRu
+      - MYSQL_PASSWORD=haruharu
+      - DB_HOSTNAME=mysql
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/init:/docker-entrypoint-initdb.d/1-init.sql
+    expose:
+      - '3306'
+  proxy:
+    container_name: proxy_h
+    image: ehgks0000/haru_nginx
+    ports: 
+      - "80:80"
+    restart: "unless-stopped"
+
+
+  # phpmyadmin:
+  #   networks:
+  #     - app-tier
+  #   image: phpmyadmin/phpmyadmin:latest
+  #   container_name: myadmin
+  #   environment:
+  #     - PMA_HOST=mysql
+  #     - MYSQL_ROOT_PASSWORD=haruharu
+  #     - PMA_ARBIRARY=1
+  #   restart: always
+  #   ports:
+  #     - '7777:80'
+  #   volumes:
+  #     - ./phpmyadmin:/docker/phpmyadmin/sessions
+  #   links:
+  #     - mysql
+  #   depends_on:
+  #     - mysql
