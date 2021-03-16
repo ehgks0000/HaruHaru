@@ -1,6 +1,5 @@
 node_modules
 dist
-.env
-env
 db
 phpmyadmin
+ec2_ubuntu.pem

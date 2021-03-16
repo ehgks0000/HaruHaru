@@ -41,10 +41,14 @@ services:
       - '3306'
   proxy:
     container_name: proxy_h
-    image: ehgks0000/haru_nginx
+    # image: ehgks0000/haru_nginx
+    build: 
+      context: ./nginx
     ports: 
       - "80:80"
     restart: "unless-stopped"
+    depends_on:
+      - server_h
 
 
   # phpmyadmin:
