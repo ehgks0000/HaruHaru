@@ -12,7 +12,7 @@ module.exports = class User extends Model {
           unique: true, // 고유한 값
         },
         phone_number: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.NUMBER(100),
           allowNull: false, // 필수
           unique: true,
         },

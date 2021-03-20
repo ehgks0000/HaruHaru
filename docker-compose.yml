@@ -52,8 +52,6 @@ services:
 
 
   # phpmyadmin:
-  #   networks:
-  #     - app-tier
   #   image: phpmyadmin/phpmyadmin:latest
   #   container_name: myadmin
   #   environment:

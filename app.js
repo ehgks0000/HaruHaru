@@ -35,6 +35,7 @@ job();
 
 // 안드로이드 통신은 cors 불필요
 if (process.env.NODE_ENV === 'production') {
+  app.enable('trust proxty');
   app.use(morgan('common'));
   app.use(hpp());
   app.use(helmet({ contentSecurityPolicy: false }));
@@ -74,7 +75,7 @@ app.use(passport.session());
 // passportConfig();
 
 app.get('/', (req, res) => {
-  res.send('hello express');
+  res.json({ '1st': 'hello express' });
 });
 
 app.use('/questions', questionRoute);
