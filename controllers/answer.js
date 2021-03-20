@@ -34,7 +34,7 @@ exports.createAnswer = async (req, res) => {
     content: content,
     emotion: emotion,
     QuestionId: globalThis.question_count,
-    // UserId,
+    // UserId: req.user.id,
   });
 
   console.log(answer);

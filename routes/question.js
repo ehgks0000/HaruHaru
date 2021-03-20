@@ -1,6 +1,7 @@
 const express = require('express');
 
 const { getQuestions, getTodayQuestion } = require('../controllers/question');
+const { isLoggedIn, isNotLoggedIn } = require('../middleware/auth');
 
 const router = express.Router();
 

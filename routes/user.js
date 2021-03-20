@@ -5,6 +5,7 @@ const googlePassport = require('../passport/googlePassport');
 const kakaoPassport = require('../passport/kakaoPassport');
 const bcrypt = require('bcrypt');
 const { User } = require('../models');
+const { isLoggedIn, isNotLoggedIn } = require('../middleware/auth');
 
 const passwordRegex = /^[a-zA-Z0-9]{6,10}$/;
 global.socialUser = '';
@@ -62,7 +63,7 @@ router.get('/register', (req, res) => {
 });
 
 // 회원가입 -> 가입 버튼
-router.post('/register', async (req, res) => {
+router.post('/register', isNotLoggedIn, async (req, res) => {
   if (!passwordRegex.test(req.body.password)) {
     console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
   }
@@ -107,6 +108,7 @@ function isValid() {}
 // 구글 로그인(인증)
 router.get(
   '/login/google',
+  isNotLoggedIn,
   googlePassport.authenticate('google', { scope: ['profile'] })
 );
 // router.get("/login/google/callback", googlePassport.authenticate('google', { failureRedirect: '/login' }),

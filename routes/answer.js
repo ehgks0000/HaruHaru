@@ -9,8 +9,9 @@ const {
   createAnswer,
   createLike,
 } = require('../controllers/answer');
+const { isLoggedIn, isNotLoggedIn } = require('../middleware/auth');
 
-router.route('/').get(getAnswers).post(createAnswer);
+router.route('/').get(getAnswers).post(isLoggedIn, createAnswer);
 router.route('/today').get(getTodayAnswer);
 router.route('/like').get(createLike);
 
