@@ -13,7 +13,7 @@ exports.getTodayQuestion = async (req, res) => {
   //   let count = await Question_today.findOne({ where: { id: 1 } });
 
   const today_question = await Question.findOne({
-    where: { id: 1 },
+    where: { id: globalThis.question_count },
   });
 
   return res.json({ today_question });
