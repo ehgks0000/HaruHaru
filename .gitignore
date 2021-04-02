@@ -3,3 +3,4 @@ dist
 db
 phpmyadmin
 ec2_ubuntu.pem
+.env

@@ -28,6 +28,9 @@ module.exports = class User extends Model {
         provider_id: {
           type: DataTypes.STRING(100),
         },
+        avatar: {
+          type: DataTypes.STRING(100),
+        },
 
         //Timestamps
         createdAt: DataTypes.DATE,

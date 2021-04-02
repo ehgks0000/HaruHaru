@@ -5,9 +5,10 @@ module.exports = {
       script: './app.js',
       instances: 2,
       exec_mode: 'cluster',
-      env: {
-        NODE_ENV: 'production',
-      },
+      //   node_args: '--inspect-brk',
+      //   env: {
+      //     NODE_ENV: 'production',
+      //   },
     },
   ],
 };
